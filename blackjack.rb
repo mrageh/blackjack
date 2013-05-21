@@ -24,7 +24,9 @@ def calculate_total(cards)
 end
 
 #Get the players name and store it in a variable
-puts 'Please enter your name'
+puts 'Hi and welcome to blackjack'
+puts 'Today we are going to play a game of blackjack'
+puts 'But before we start Please enter your name'
 name = gets.chomp
 #Create an array to store the face values and the suite values
 face = ['2','3','4','5','6','7','8','9','10','A','K','J','Q']
@@ -61,7 +63,7 @@ puts " "
 if dealer_total > my_total
 	puts 'The Dealer wins'
 else
-	puts "The #{name} wins"
+	puts "#{name} win"
 end
 
 #Prompt user to stay or hit
