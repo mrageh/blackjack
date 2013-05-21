@@ -1,3 +1,9 @@
+#Magan Adam
+#21/05/2013
+#Version 4 or my fourth iteration
+#The comments through out this code are there to
+#assist me in the near future as I am a beginner in Ruby
+
 def calculate_total(cards)
 	arr = cards.map { |e| e[1]  }
 
@@ -31,7 +37,7 @@ name = gets.chomp
 #Create an array to store the face values and the suite values
 face = ['2','3','4','5','6','7','8','9','10','A','K','J','Q']
 suites = ['S','H','C','D']
-#Now create a new array to store the full deck
+#Now create a new array to store the full cards
 cards = []
 #To access each object within the suites array use the .each method
 suites.each do |current_suite|
@@ -43,21 +49,61 @@ end
 #Now am going to shuffle my cards
 cards.shuffle!
 
-#Deal the cards to both player and the dealer
-mycards = []
-dealercards = []
+#Deal the cards to both player and the dealer two times
+my_cards = []
+dealer_cards = []
+
 2.times do
-	mycards << cards.pop
-	dealercards << cards.pop
+	my_cards << cards.pop
+	dealer_cards << cards.pop
 end
 
-my_total = calculate_total(mycards)
-dealer_total = calculate_total(dealercards)
+#Store the total for both the player and the dealer
+my_total = calculate_total(my_cards)
+dealer_total = calculate_total(dealer_cards)
 
 #Show Cards
-puts "#{name} cards are: #{mycards[0]} and #{mycards[1]} and the total is: #{my_total}"
-puts "Dealers cards are: #{dealercards[0]} and #{dealercards[1]} and the total is: #{dealer_total}"
+puts "#{name} cards are: #{my_cards[0]} and #{my_cards[1]} and the total is: #{my_total}"
+puts "Dealers cards are: #{dealer_cards[0]} and #{dealer_cards[1]} and the total is: #{dealer_total}"
 puts " "
+
+
+# If player gets blackjack
+if my_total == 21
+  puts "Congratulations, you hit blackjack! You win!"
+  exit
+end
+
+#Execute this if the total for the player is less then 21
+while my_total < 21
+  puts "What would you like to do? 1) hit 2) stay"
+  hit_or_stay = gets.chomp
+
+  if !['1', '2'].include?(hit_or_stay)
+    puts "Error: you must enter 1 or 2"
+    next
+  end
+  #Do this if player chooses stay
+  if hit_or_stay == "2"
+    puts "You chose to stay."
+    break
+  end
+
+  #Do this if player chooses hit
+  new_card = cards.pop
+  puts "Dealing card to player: #{new_card}"
+  my_cards << new_card
+  my_total = calculate_total(my_cards)
+  puts "Your total is now: #{my_total}"
+
+  if my_total == 21
+    puts "Congratulations, you hit blackjack! You win!"
+    exit
+  elsif my_total > 21
+    puts "Sorry, it looks like you busted!"
+    exit
+  end
+end
 
 #Declare a winner
 if dealer_total > my_total
@@ -65,7 +111,3 @@ if dealer_total > my_total
 else
 	puts "#{name} win"
 end
-
-#Prompt user to stay or hit
-puts "What would you like to do?? 1.)stay or 2.)hit"
-hit_or_stay = gets.chomp
