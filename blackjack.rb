@@ -1,6 +1,6 @@
 #Magan Adam
-#21/05/2013
-#Version 4 or my fourth iteration
+#06/06/2013
+#Version 5 or my fourth iteration
 #The comments through out this code are there to
 #assist me in the near future as I am a beginner in Ruby
 
