@@ -70,13 +70,13 @@ puts " "
 
 # If player gets blackjack
 if my_total == 21
-  puts "Congratulations, you hit blackjack! You win!"
+  puts "Congratulations #{name}, you hit blackjack! You win!"
   exit
 end
 
 #Execute this if the total for the player is less then 21
 while my_total < 21
-  puts "What would you like to do? 1) hit 2) stay"
+  puts "What would you like to do #{name}? 1) hit 2) stay"
   hit_or_stay = gets.chomp
 
   if !['1', '2'].include?(hit_or_stay)
@@ -94,10 +94,10 @@ while my_total < 21
   puts "Dealing card to player: #{new_card}"
   my_cards << new_card
   my_total = calculate_total(my_cards)
-  puts "Your total is now: #{my_total}"
+  puts "#{name} your total is now: #{my_total}"
 
   if my_total == 21
-    puts "Congratulations, you hit blackjack! You win!"
+    puts "Congratulations #{name}, you hit blackjack! You win!"
     exit
   elsif my_total > 21
     puts "Sorry, it looks like you busted!"
